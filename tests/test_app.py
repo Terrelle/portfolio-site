@@ -24,8 +24,9 @@ class AppTestCase(unittest.TestCase):
         assert response.status_code == 200
         assert response.is_json
         json = response.get_json()
+        print(json)
         assert "timeline_posts" in json
-        # assert json["timeline_posts"] == 0
+        assert json["timeline_posts"] == 0
     
     def test_timeline_get_post(self):
         # POST

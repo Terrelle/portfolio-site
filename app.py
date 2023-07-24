@@ -2,7 +2,12 @@ from flask import Flask, request, render_template, send_from_directory, jsonify,
 from peewee import *
 import os
 import datetime
+import re
 from playhouse.shortcuts import model_to_dict
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -33,23 +38,43 @@ mydb.create_tables([TimelinePost])
 # POST route to add new timeline
 @app.route('/api/timeline_post', methods=['POST'])
 def postTimelinePost():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
+
+    
+
+    if not name:
+        return {'error': 'Invalid Name'}, 400
+    if not email:
+        return {'error': 'Invalid Email'}, 400
+    if not content:
+        return {'error': 'Invalid Content'}, 400
+    
+    
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return {'error': 'Invalid Email: Please provide a valid email address.'}, 400
+
+    
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
     return model_to_dict(timeline_post)
 
 @app.route('/api/timeline_post', methods=['GET'])
 def getTimelinePost():
-    return {
-        'timeline_posts': [
-            model_to_dict(p)
-            for p in 
-TimelinePost.select().order_by(TimelinePost.created_at.desc())
-        ]
-    }
+   
+    timeline_posts = [
+        model_to_dict(p)
+        for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
+    ]
 
+    if not timeline_posts:
+        return {'timeline_posts': len(timeline_posts)}
+
+    return {'timeline_posts': timeline_posts}
+
+""""
+# Delete all at once
 @app.route('/api/timeline_post', methods=['DELETE'])
 def deleteTimelinePosts():
     try:    
@@ -59,7 +84,16 @@ def deleteTimelinePosts():
         return jsonify({'status': 'success', 'message': 'All timeline posts deleted successfully'})
     except DoesNotExist:
         return jsonify({'status': 'error', 'message': 'No timeline posts found'})   
+"""
 
+@app.route('/api/timeline_post/<int:post_id>', methods=['DELETE'])
+def delete_timeline_post(post_id):
+    try:
+        timeline_post = TimelinePost.get_by_id(post_id)
+        timeline_post.delete_instance()
+        return {'message': 'Post deleted successfully'}
+    except TimelinePost.DoesNotExist:
+        return {'error': 'Post with that id not found'}
 
 @app.route('/')
 def index():
