@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/terrelletettey/Desktop/Resume Site/python3venv/bin/python" "$0" "$@"
-' '''
+#!/Users/terrelletettey/Desktop/portfolio-site/python3venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

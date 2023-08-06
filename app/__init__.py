@@ -34,6 +34,30 @@ class TimelinePost(Model):
 mydb.connect()
 mydb.create_tables([TimelinePost])
 
+
+@app.route('/')
+def index():
+    # Data to be displayed on the front end
+    bio = "Hi, I'm Terrelle and I am web-developer based in Ohio, USA. My passion for coding through technology has led me to work on unique projects which solve in everyday life."
+    school = "Kent State University"
+    major = "Major - Computer Science (2020-Present)"
+    return render_template('index.html', bio=bio, school=school, major = major)
+
+
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', title="Timeline")
+
+
+@app.route('/places_visited')
+def places_visited():
+    return render_template('places_visited.html')
+
+
+@app.route('/app/assets/<path:path>')
+def send_static(path):
+    return send_from_directory('assets', path)
+
 # Endpoint to save and retrieve all our timeline posts
 # POST route to add new timeline
 @app.route('/api/timeline_post', methods=['POST'])
@@ -94,25 +118,6 @@ def delete_timeline_post(post_id):
         return {'message': 'Post deleted successfully'}
     except TimelinePost.DoesNotExist:
         return {'error': 'Post with that id not found'}
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/timeline')
-def timeline():
-    return render_template('timeline.html', title="Timeline")
-
-
-@app.route('/places_visited')
-def places_visited():
-    return render_template('places_visited.html')
-
-
-@app.route('/assets/<path:path>')
-def send_static(path):
-    return send_from_directory('assets', path)
 
 
 

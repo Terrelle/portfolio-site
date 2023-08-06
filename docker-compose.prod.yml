@@ -9,6 +9,9 @@ services:
     depends_on:
       - mysql
 
+    ports:
+      - 5000:5000
+
   mysql:
     container_name: mysql
     image: mariadb
@@ -18,23 +21,7 @@ services:
     volumes:
       - mydatabase:/var/lib/mysql
 
-  nginx:
-     container_name: nginx
-     image: jonasal/nginx-certbot
-     restart: always
-     environment:
-       - CERTBOT_EMAIL=${CERTBOT_EMAIL}
-     ports:
-       - 80:80
-       - 443:443
-     volumes:
-       - nginx_secrets:/etc/letsencrypt
-       - ./user_conf.d:/etc/nginx/user_conf.d
-     depends_on:
-       - myportfolio
 
 
 volumes:
   mydatabase:
-  nginx_secrets:
-"docker-compose.prod.yml" 39L, 683C

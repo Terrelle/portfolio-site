@@ -1,4 +1,4 @@
-#!/Users/terrelletettey/Desktop/Resume Site/python3venv/bin/python
+#!/Users/terrelletettey/Desktop/portfolio-site/python3venv/bin/python3
 
 import datetime
 import os

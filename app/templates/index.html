@@ -7,14 +7,14 @@
         <meta name="author" content="" />
         <title>Portfolio Site</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="app/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/static/styles.css" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" />
 
         <!--MD5 For Email Hashing-->
         <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
@@ -25,27 +25,29 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="/">Portfolio Site</a>
+                <a class="navbar-brand" href="/">Portfolio</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#education">Education</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#projects">Projects</a></li>                        
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/places_visited">Trips</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#education">Education</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#projects">Projects</a></li>                    
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#contact">Contact</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/timeline">Timeline</a></li>
-
+    
+    
                     </ul>
                 </div>
             </div>
         </nav>
+        
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/logo.jpg" alt="..." />
+                
+                <img class="masthead-avatar mb-5" src="{{ url_for('static', filename='assets/img/logo.jpg') }}" alt="..." />
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Terrelle Tettey</h1>
                 
@@ -58,12 +60,8 @@
                 <!-- Masthead Subheading-->
                 <!--<p class="masthead-subheading font-weight-light mb-0" style="font-weight: bold;">Aspiring Production/Site Reliability Engineer</p>-->
                 <div class="divider-custom divider-light"></div>
-                <p class="lead">Hi, I'm Terrelle and I am web-developer based in Ohio, USA. My passion
-                    for coding through technology has led me to work on unique projects
-                    which solve in everyday life.
-                    <br>
-                    I'm passionate about all things production engineering.
-                </p></div>
+                <p class="lead">{{ bio }}</p>
+                </div>
             </div>
         </header>
         
@@ -80,9 +78,9 @@
                 </div>
                 <!-- Education Section Content-->
                 <div class="container d-flex align-items-center text-secondary flex-column">
-                    <p class="lead" style="font-weight: bold;">Kent State University</p>
+                    <p class="lead" style="font-weight: bold;">{{ school }}</p>
                     <ul>
-                        <li><p>Major - Computer Science (2020-Present) </p></li>
+                        <li><p>{{ major }}</p></li>
                     </ul>
                 </div>
 
@@ -108,7 +106,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/hackathon.jpeg" alt="..." />
+                            <img class="img-fluid" src="{{ url_for('static', filename='assets/img/hackathon.jpeg') }}" alt="..." />
                         </div>
                         <p class="lead" style="font-weight: bold; text-align: center;">MyClosetIQ</p>
                         <p style="text-align: center;">A tool that predicts clothing size using machine learning.</p>
@@ -207,7 +205,8 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/hobby/basketball.jpeg" alt="..." />
+                                    
+                                    <img class="img-fluid rounded mb-5" src="app/assets/img/hobby/basketball.jpeg" alt="..." />
                                     <p>My go to activity anytime I take a break from coding. Favorite player is Steph Curry</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -238,7 +237,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/hobby/movie.jpeg" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="app/assets/img/hobby/movie.jpeg" alt="..." />
                                     <p>Some of my favorite genres include action and sci-fi. </p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -269,7 +268,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Hobby Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/hobby/videogame.jpeg" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="app/assets/img/hobby/videogame.jpeg" alt="..." />
                                     <p>As an basketball lover, my go to game is NBA 2K. Go to team -– Warriors</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -301,9 +300,9 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/hackathon.jpeg" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="{{ url_for('static', filename='assets/img/hackathon.jpeg') }}" alt="..." />
                                     <p>This is a web application built with Flask that uses machine learning algorithms to predict the right clothing size for customers based on their body measurements. I built this as part of a Fashion Tech Hackathon organized by Major League Hacking.</p>
-                                    <a href="https://github.com/Terrelle/MyClosetIQ/tree/master">View</a><br><br>
+                                    <a href="https://github.com/Terrelle/MyClosetIQ/tree/master">View Repo On Github</a><br><br>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -319,7 +318,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="static/scripts.js"></script>
+        <script src="{{ url_for('static', filename='styles.css') }}"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

@@ -1,6 +1,6 @@
 import unittest
 import os
-from app import app
+from . import app
 
 os.environ['TESTING'] = 'true'
 class AppTestCase(unittest.TestCase):
