@@ -1,7 +1,7 @@
 version: "3"
 services:
   myportfolio:
-    container_name: portfolio-site
+    container_name: myportfolio
     build: .
     restart: always
     env_file:
@@ -11,7 +11,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/portfolio-site
+      - .:/myportfolio
     depends_on:
       - mysql
 

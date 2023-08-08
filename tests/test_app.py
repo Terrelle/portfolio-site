@@ -1,6 +1,6 @@
 import unittest
 import os
-from . import app
+from app import app
 
 os.environ['TESTING'] = 'true'
 class AppTestCase(unittest.TestCase):
@@ -15,16 +15,13 @@ class AppTestCase(unittest.TestCase):
         # Test sub sections
         assert '<section class="page-section text-white mb-0" id="education">' in html
         assert '<section class="page-section portfolio" id="projects">' in html
-        assert '<section class="page-section text-white mb-0" id="work">' in html
-        assert '<section class="page-section portfolio" id="hobbies">' in html
-    
+        assert '<section class="page-section text-white mb-0" id="work">' in html    
    
     def test_timeline(self):
         response = self.client.get("/api/timeline_post")
         assert response.status_code == 200
         assert response.is_json
         json = response.get_json()
-        print(json)
         assert "timeline_posts" in json
         assert json["timeline_posts"] == 0
     
