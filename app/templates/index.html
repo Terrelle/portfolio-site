@@ -22,26 +22,7 @@
     </head>
     {% block content %}
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="/">Portfolio</a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#education">Education</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#projects">Projects</a></li>                    
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/#contact">Contact</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/timeline">Timeline</a></li>
-    
-    
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+        {% include "./navbar.html" %}
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
@@ -87,7 +68,7 @@
                 </div>
             </div>
         </section>
-        <!-- Hobbies Section-->
+        <!-- Project Section-->
         <section class="page-section portfolio" id="projects">
             <div class="container">
                 <!-- Hobby Section Heading-->
@@ -112,6 +93,38 @@
                         <p style="text-align: center;">A tool that predicts clothing size using machine learning.</p>
 
                     </div>
+        </section>
+
+        <!-- Skills Section-->
+        <section class="page-section portfolio" id="skills">
+            <div class="container">
+                <!-- Skills Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Skills</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-code"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Skills Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- Skills Item 1-->
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto">    
+                            <!--Add image-->                     
+                            <img class="img-fluid" src="{{ url_for('static', filename='assets/img/skills/python.jpg') }}" alt="python logo" />
+                        </div>
+                        <p class="lead" style="font-weight: bold; text-align: center;">Python</p>
+                    </div>
+                     <!-- Skills Item 2-->
+                     <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto">
+                            <!--Add image-->  
+                            <img class="img-fluid" src="{{ url_for('static', filename='assets/img/skills/html.jpg') }}" alt="html logo" />
+                        </div>
+                        <p class="lead" style="font-weight: bold; text-align: center;">HTML</p>
+                    </div>
+                    
         </section>
          <!-- Work Experience Section-->
          <section class="page-section text-white mb-0" id="work">
