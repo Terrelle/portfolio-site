@@ -1,3 +1,17 @@
+### MLH Production Engineering Fellowship (Meta)
+This is the repository for my summer 2023 project. This project gave me the opportunity to polish and gain new skills needed to become better at Production/Site Reliability Engineering.
+
+## Features of the project
+- Integration of CI/CD using Github Actions to automate repetive tasks.
+- Jinja templating engine for dynamic HTML rendering.
+- Bootstrap for responsive design.
+- Nginx reverse proxy integration for ssl certificate.
+- Containerization using Docker to make project more lightweight.
+- Database integration with Mariadb.
+- HTTP POST and GET method integration for posting and viewing timeline posts.
+
+  
+
 ## Installation
 
 Make sure you have python3 and pip installed
